@@ -1,0 +1,102 @@
+{
+  "defaults": {
+    "formats": {
+      "csv": {
+        "enabled": true,
+        "window": { "mode": "calendar_month", "size": 1 },
+        "merge_strategy": "csv_header",
+        "postprocess": ["xlsx"]
+      },
+      "xml": {
+        "enabled": true,
+        "window": { "mode": "none", "size": 1 },
+        "merge_strategy": "rdfxml_graph",
+        "postprocess": ["jsonld"]
+      }
+    },
+    "schedule": { "touch_mtime_to_range_end": true }
+  },
+  "datasets": {
+    "OrganizacnaStruktura": {
+      "schedules": [
+        {
+          "kind": "snapshot_halfyear_start",
+          "out_dir_template": "."
+        }
+      ]
+    },
+    "PoctyZamAPracMiest": {
+      "schedules": [
+        {
+          "kind": "annual_snapshot_on_date",
+          "start_year": 2024,
+          "month": 2,
+          "day": 1,
+          "out_dir_template": "{year}"
+        }
+      ]
+    },
+    "ZahrPracCesty": {
+      "schedules": [
+        {
+          "kind": "previous_year_full",
+          "out_dir_template": "{year}"
+        }
+      ]
+    },
+    "Objednavky": {
+      "schedules": [
+        {
+          "kind": "yearly_archive_with_current_ytd",
+          "start_year": 2024,
+          "out_dir_template": "{year}"
+        }
+      ],
+      "formats": {
+        "xml": {
+          "enabled": true,
+          "window": { "mode": "calendar_month", "size": 1 },
+          "merge_strategy": "rdfxml_graph",
+          "keep_chunks": false,
+          "postprocess": ["jsonld"]
+        }
+      }
+    },
+    "Faktury": {
+      "schedules": [
+        {
+          "kind": "yearly_archive_with_current_ytd",
+          "start_year": 2024,
+          "out_dir_template": "{year}"
+        }
+      ],
+      "formats": {
+        "xml": {
+          "enabled": true,
+          "window": { "mode": "calendar_month", "size": 1 },
+          "merge_strategy": "rdfxml_graph",
+          "keep_chunks": false,
+          "postprocess": ["jsonld"]
+        }
+      }
+    },
+    "Zmluvy": {
+      "schedules": [
+        {
+          "kind": "yearly_archive_with_current_ytd",
+          "start_year": 2024,
+          "out_dir_template": "{year}"
+        }
+      ],
+      "formats": {
+        "xml": {
+          "enabled": true,
+          "window": { "mode": "calendar_month", "size": 1 },
+          "merge_strategy": "rdfxml_graph",
+          "keep_chunks": false,
+          "postprocess": ["jsonld"]
+        }
+      }
+    }
+  }
+}

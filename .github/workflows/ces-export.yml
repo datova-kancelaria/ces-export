@@ -1,0 +1,74 @@
+name: Export CES data
+
+on:
+  # re-enable if you want weekly updates:
+  # schedule:
+  #   - cron: "0 2 * * 0"
+  workflow_dispatch: {}
+
+jobs:
+  export:
+    runs-on: [self-hosted, linux, x64]
+    permissions:
+      contents: read
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          clean: false
+
+      - name: Load and validate local runner env
+        id: runner_env
+        shell: bash
+        run: |
+          set -euo pipefail
+          source /opt/ces-export/runner-env.sh
+
+          if [[ -z "${PYTHON_BIN:-}" ]]; then
+            PYTHON_BIN=python3
+          fi
+          command -v "$PYTHON_BIN" >/dev/null 2>&1
+
+          if [[ ${CES_EXPORT_OUT_DIR+x} != x ]]; then
+            CES_EXPORT_OUT_DIR=""
+          fi
+          if [[ -z "${CES_CONFIG:-}" ]]; then
+            CES_CONFIG="$GITHUB_WORKSPACE/config/datasets.json"
+          fi
+
+          if [[ -n "$CES_EXPORT_OUT_DIR" ]]; then
+            : "${CES_ORG_NAME:?Missing CES_ORG_NAME (required when CES_EXPORT_OUT_DIR is enabled)}"
+            : "${CES_SECRETS_DIR:?Missing CES_SECRETS_DIR (required when CES_EXPORT_OUT_DIR is enabled)}"
+
+            sudo test -d "$CES_SECRETS_DIR"
+            sudo test -f "$CES_SECRETS_DIR/APIKEY"
+            sudo test -f "$CES_SECRETS_DIR/USER"
+            sudo test -f "$CES_SECRETS_DIR/PASS"
+            sudo test -f "$CES_SECRETS_DIR/URI"
+            test -f "$CES_CONFIG"
+          fi
+
+          {
+            echo "PYTHON_BIN=$PYTHON_BIN"
+            echo "CES_EXPORT_OUT_DIR=$CES_EXPORT_OUT_DIR"
+            echo "CES_CONFIG=$CES_CONFIG"
+            [[ -n "${CES_ORG_NAME:-}" ]] && echo "CES_ORG_NAME=$CES_ORG_NAME"
+            [[ -n "${CES_SECRETS_DIR:-}" ]] && echo "CES_SECRETS_DIR=$CES_SECRETS_DIR"
+            [[ -n "${http_proxy:-}" ]] && echo "http_proxy=$http_proxy"
+            [[ -n "${https_proxy:-}" ]] && echo "https_proxy=$https_proxy"
+            [[ -n "${HTTP_PROXY:-}" ]] && echo "HTTP_PROXY=$HTTP_PROXY"
+            [[ -n "${HTTPS_PROXY:-}" ]] && echo "HTTPS_PROXY=$HTTPS_PROXY"
+            [[ -n "${NO_PROXY:-}" ]] && echo "NO_PROXY=$NO_PROXY"
+          } >> "$GITHUB_ENV"
+
+      - name: Run CES export
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -n "${CES_EXPORT_OUT_DIR:-}" ]]; then
+            mkdir -p "$CES_EXPORT_OUT_DIR"
+            ./run.sh --out-dir "$CES_EXPORT_OUT_DIR"
+          else
+            echo "[ces-export] skipped (output dir disabled)"
+          fi
