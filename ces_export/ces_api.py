@@ -12,7 +12,7 @@ from .models import AppSettings
 MAX_POLLS = 240
 POLL_SLEEP_SEC = 2.0
 
-WAIT_STATUS = "processing"
+WAIT_STATUSES = {"new", "processing"}
 DONE_STATUS = "done"
 
 
@@ -103,7 +103,7 @@ def poll_od002_until_done(
         err = j.get("errorMessage")
         print("status:", status, "| err:", err)
 
-        if status == WAIT_STATUS:
+        if status in WAIT_STATUSES:
             time.sleep(POLL_SLEEP_SEC)
             continue
         if status == DONE_STATUS:
