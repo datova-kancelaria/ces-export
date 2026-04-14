@@ -31,8 +31,13 @@ cmd=(
   -m ces_export
   --config "$CONFIG_PATH"
   --org-name "$ORG_NAME"
-  "$@"
 )
+
+if [[ -n "${CES_EXPORT_OUT_DIR:-}" ]]; then
+  cmd+=( --out-dir "$CES_EXPORT_OUT_DIR" )
+fi
+
+cmd+=( "$@" )
 
 if [[ "${1:-}" == "--print-cmd" ]]; then
   shift
