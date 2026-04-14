@@ -25,6 +25,24 @@
         }
       ]
     },
+    "NakupenySoftware": {
+      "schedules": [
+        {
+          "kind": "yearly_archive_with_current_ytd",
+          "start_year": 2024,
+          "out_dir_template": "{year}"
+        }
+      ],
+      "formats": {
+        "xml": {
+          "enabled": true,
+          "window": { "mode": "calendar_month", "size": 1 },
+          "merge_strategy": "rdfxml_graph",
+          "keep_chunks": false,
+          "postprocess": ["jsonld"]
+        }
+      }
+    },
     "PoctyZamAPracMiest": {
       "schedules": [
         {
