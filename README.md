@@ -232,3 +232,48 @@ In the current implementation:
 - after `OD_002` returns `status: "done"`, the runner reads the dataset from the same OD_002 response field `payload`
 - that `payload` is Base64-decoded into raw file bytes and written directly to disk
 - `responsePath` is not used by the current implementation
+
+## Local open-data catalogue (LKOD)
+
+After a normal export, `run.sh` generates a static DCAT-AP-SK catalogue from the
+same schedule plan and from the files that actually exist in the output tree.
+The metadata itself is configured separately in `config/lcod.json`.
+
+Generated files:
+
+- `<output>/katalog.ttl` — catalogue index registered/harvested by NKOD
+- `<output>/lkod/datasets/.../*.ttl` — one complete metadata record per exported dataset and date range
+- `<output>/lkod/.state.json` — local state preserving `dct:issued` and updating `dct:modified` only when distributions change
+
+The catalogue index links to the dataset metadata records. Each metadata record
+then links to the actual CSV, XLSX, RDF/XML and JSON-LD files as
+`dcat:Distribution` resources. Static files are not described as
+`dcat:DataService`; a data service should only be added when a genuine API or
+other service endpoint exists.
+
+Generation is strict by default. A planned record is included only when its main
+export file exists and its `.meta.json` matches the currently planned dataset,
+date range, format, merge strategy and window. The generator then parses all
+produced Turtle and verifies that catalogue links, record links and local
+distribution files resolve inside the configured output directory. A broken or
+stale current-year export therefore prevents publishing a misleading catalogue.
+
+Standalone invocation:
+
+```bash
+python -m lcod_catalogue.main \
+  --config config/datasets.json \
+  --metadata-config config/lcod.json \
+  --out-dir /path/to/output
+```
+
+For an intentionally partial local test, add `--allow-missing`. Production runs
+should remain strict.
+
+Wrapper controls:
+
+- `CES_LCOD_CONFIG` — alternate LKOD metadata config
+- `CES_GENERATE_LKOD=0` — skip catalogue generation
+- `CES_LKOD_ALLOW_MISSING=1` — permit a partial catalogue (testing only)
+
+`run.sh` automatically skips LKOD generation for `--dry-run` and organization-listing commands.
