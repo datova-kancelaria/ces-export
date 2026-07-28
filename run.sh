@@ -65,9 +65,14 @@ sudo --preserve-env=http_proxy,https_proxy,HTTP_PROXY,HTTPS_PROXY,NO_PROXY,CES_C
   -p LoadCredential=URI:"$SECRETS_DIR/URI" \
   "${cmd[@]}"
 
+
 LCOD_CONFIG_PATH="${CES_LCOD_CONFIG:-$SCRIPT_DIR/config/lcod.json}"
 
-"$PYTHON_BIN" -m lcod_catalogue.main \
-  --config "$CONFIG_PATH" \
-  --metadata-config "$LCOD_CONFIG_PATH" \
-  --out-dir "${CES_EXPORT_OUT_DIR:?CES_EXPORT_OUT_DIR is required for LKOD generation}"
+(
+  cd "$SCRIPT_DIR"
+
+  "$PYTHON_BIN" -m lcod_catalogue.main \
+    --config "$CONFIG_PATH" \
+    --metadata-config "$LCOD_CONFIG_PATH" \
+    --out-dir "${CES_EXPORT_OUT_DIR:?CES_EXPORT_OUT_DIR is required for LKOD generation}"
+)
