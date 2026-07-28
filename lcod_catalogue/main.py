@@ -684,11 +684,24 @@ def generate_catalogue(
         distribution_files = list(dict.fromkeys(distribution_files))
 
         supported_files: list[Path] = []
+
         for path in distribution_files:
-            if path.suffix.lower() not in formats:
+            suffix = path.suffix.lower()
+
+            if suffix not in formats:
                 raise ValueError(
-                    f"No LKOD format mapping for generated file {path} (suffix {path.suffix.lower()!r})"
+                    f"No LKOD format mapping for generated file {path} "
+                    f"(suffix {suffix!r})"
                 )
+
+            format_metadata = _need_mapping(
+                formats.get(suffix),
+                f"formats.{suffix}",
+            )
+
+            if format_metadata.get("enabled", True) is False:
+                continue
+
             supported_files.append(path)
 
         if not supported_files:

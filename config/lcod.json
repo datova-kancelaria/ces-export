@@ -213,6 +213,7 @@
   },
   "formats": {
     ".csv": {
+      "enabled": true,
       "format": "http://publications.europa.eu/resource/authority/file-type/CSV",
       "media_type": "http://www.iana.org/assignments/media-types/text/csv",
       "title": {
@@ -221,6 +222,7 @@
       }
     },
     ".xlsx": {
+      "enabled": false,
       "format": "http://publications.europa.eu/resource/authority/file-type/XLSX",
       "media_type": "http://www.iana.org/assignments/media-types/application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
       "title": {
@@ -229,6 +231,7 @@
       }
     },
     ".xml": {
+      "enabled": false,
       "format": "http://publications.europa.eu/resource/authority/file-type/RDF_XML",
       "media_type": "http://www.iana.org/assignments/media-types/application/rdf+xml",
       "title": {
@@ -237,6 +240,7 @@
       }
     },
     ".jsonld": {
+      "enabled": false,
       "format": "http://publications.europa.eu/resource/authority/file-type/JSON_LD",
       "media_type": "http://www.iana.org/assignments/media-types/application/ld+json",
       "title": {
