@@ -64,3 +64,5 @@ sudo --preserve-env=http_proxy,https_proxy,HTTP_PROXY,HTTPS_PROXY,NO_PROXY,CES_C
   -p LoadCredential=PASS:"$SECRETS_DIR/PASS" \
   -p LoadCredential=URI:"$SECRETS_DIR/URI" \
   "${cmd[@]}"
+
+$PYTHON_BIN 

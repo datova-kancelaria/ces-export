@@ -1,0 +1,248 @@
+{
+  "base_url": "https://datova-kancelaria.github.io/datasets/finance-mirri",
+  "catalogue_path": "katalog.ttl",
+  "dataset_records_dir": "lkod/datasets",
+  "state_path": "lkod/.state.json",
+  "catalogue": {
+    "title": {
+      "sk": "Katalóg otvorených dát Ministerstva investícií, regionálneho rozvoja a informatizácie Slovenskej republiky",
+      "en": "Open Data Catalogue of the Ministry of Investments, Regional Development and Informatization of the Slovak Republic"
+    },
+    "description": {
+      "sk": "Otvorené dáta Ministerstva investícií, regionálneho rozvoja a informatizácie Slovenskej republiky exportované z Centrálneho ekonomického systému.",
+      "en": "Open data of the Ministry of Investments, Regional Development and Informatization of the Slovak Republic exported from the Central Economic System."
+    },
+    "publisher": "https://data.gov.sk/id/legal-subject/50349287",
+    "homepage": "https://www.mirri.gov.sk",
+    "contact": {
+      "type": "Organization",
+      "name": {
+        "sk": "Ministerstvo investícií, regionálneho rozvoja a informatizácie SR, Oddelenie centrálnej dátovej kancelárie",
+        "en": "Ministry of Investments, Regional Development and Informatization of the Slovak Republic, Central Data Office"
+      },
+      "email": "ocdk@mirri.gov.sk"
+    }
+  },
+  "dataset_defaults": {
+    "enabled": true,
+    "publisher": "https://data.gov.sk/id/legal-subject/50349287",
+    "themes": [
+      "http://publications.europa.eu/resource/authority/data-theme/ECON"
+    ],
+    "frequency": "http://publications.europa.eu/resource/authority/frequency/MONTHLY",
+    "dataset_type": "https://data.gov.sk/def/dataset-type/1",
+    "spatial": [
+      "https://data.gov.sk/id/nuts1/SK0"
+    ],
+    "terms_of_use": {
+      "authors_work_type": "http://publications.europa.eu/resource/authority/licence/CC_BY",
+      "original_database_type": "http://publications.europa.eu/resource/authority/licence/CC_BY",
+      "database_special_rights_type": "http://publications.europa.eu/resource/authority/licence/CC_BY",
+      "personal_data_containment_type": "https://data.gov.sk/def/personal-data-occurence-type/2"
+    }
+  },
+  "datasets": {
+    "OrganizacnaStruktura": {
+      "slug": "organizacna-struktura",
+      "title": {
+        "sk": "Organizačná štruktúra MIRRI SR k {date_to}",
+        "en": "Organizational structure of MIRRI SR as of {date_to}"
+      },
+      "description": {
+        "sk": "Organizačná štruktúra Ministerstva investícií, regionálneho rozvoja a informatizácie Slovenskej republiky platná k {date_to}.",
+        "en": "Organizational structure of the Ministry of Investments, Regional Development and Informatization of the Slovak Republic valid as of {date_to}."
+      },
+      "themes": [
+        "http://publications.europa.eu/resource/authority/data-theme/GOVE"
+      ],
+      "frequency": "http://publications.europa.eu/resource/authority/frequency/ANNUAL_2",
+      "keywords": {
+        "sk": [
+          "publikačné minimum",
+          "organizačná štruktúra",
+          "MIRRI",
+          "verejná správa"
+        ],
+        "en": [
+          "publication minimum",
+          "organizational structure",
+          "MIRRI",
+          "public administration"
+        ]
+      }
+    },
+    "NakupenySoftware": {
+      "slug": "nakupeny-softver",
+      "title": {
+        "sk": "Nakúpený softvér {year}",
+        "en": "Purchased software {year}"
+      },
+      "description": {
+        "sk": "Prehľad softvéru nakúpeného Ministerstvom investícií, regionálneho rozvoja a informatizácie Slovenskej republiky za obdobie od {date_from} do {date_to}.",
+        "en": "Overview of software purchased by the Ministry of Investments, Regional Development and Informatization of the Slovak Republic from {date_from} to {date_to}."
+      },
+      "keywords": {
+        "sk": [
+          "publikačné minimum",
+          "softvér",
+          "nákup softvéru"
+        ],
+        "en": [
+          "publication minimum",
+          "software",
+          "software purchases"
+        ]
+      }
+    },
+    "PoctyZamAPracMiest": {
+      "slug": "pocty-zamestnancov-a-pracovnych-miest",
+      "title": {
+        "sk": "Počty zamestnancov a pracovných miest {year}",
+        "en": "Numbers of employees and positions {year}"
+      },
+      "description": {
+        "sk": "Počty zamestnancov a pracovných miest Ministerstva investícií, regionálneho rozvoja a informatizácie Slovenskej republiky k {date_to}.",
+        "en": "Numbers of employees and positions at the Ministry of Investments, Regional Development and Informatization of the Slovak Republic as of {date_to}."
+      },
+      "themes": [
+        "http://publications.europa.eu/resource/authority/data-theme/GOVE"
+      ],
+      "frequency": "http://publications.europa.eu/resource/authority/frequency/ANNUAL",
+      "keywords": {
+        "sk": [
+          "publikačné minimum",
+          "zamestnanci",
+          "pracovné miesta",
+          "MIRRI"
+        ],
+        "en": [
+          "publication minimum",
+          "employees",
+          "positions",
+          "MIRRI"
+        ]
+      }
+    },
+    "ZahrPracCesty": {
+      "slug": "zahranicne-pracovne-cesty",
+      "title": {
+        "sk": "Zahraničné pracovné cesty {year}",
+        "en": "Foreign business trips {year}"
+      },
+      "description": {
+        "sk": "Prehľad zahraničných pracovných ciest za obdobie od {date_from} do {date_to}.",
+        "en": "Overview of foreign business trips from {date_from} to {date_to}."
+      },
+      "frequency": "http://publications.europa.eu/resource/authority/frequency/ANNUAL",
+      "keywords": {
+        "sk": [
+          "publikačné minimum",
+          "zahraničné pracovné cesty",
+          "služobné cesty"
+        ],
+        "en": [
+          "publication minimum",
+          "foreign business trips",
+          "official travel"
+        ]
+      }
+    },
+    "Objednavky": {
+      "slug": "objednavky",
+      "title": {
+        "sk": "Objednávky {year}",
+        "en": "Orders {year}"
+      },
+      "description": {
+        "sk": "Zoznam objednávok za obdobie od {date_from} do {date_to}.",
+        "en": "List of orders from {date_from} to {date_to}."
+      },
+      "keywords": {
+        "sk": [
+          "publikačné minimum",
+          "objednávky"
+        ],
+        "en": [
+          "publication minimum",
+          "orders"
+        ]
+      }
+    },
+    "Faktury": {
+      "slug": "faktury",
+      "title": {
+        "sk": "Faktúry {year}",
+        "en": "Invoices {year}"
+      },
+      "description": {
+        "sk": "Zoznam faktúr za obdobie od {date_from} do {date_to}.",
+        "en": "List of invoices from {date_from} to {date_to}."
+      },
+      "keywords": {
+        "sk": [
+          "publikačné minimum",
+          "faktúry"
+        ],
+        "en": [
+          "publication minimum",
+          "invoices"
+        ]
+      }
+    },
+    "Zmluvy": {
+      "slug": "zmluvy",
+      "title": {
+        "sk": "Zmluvy {year}",
+        "en": "Contracts {year}"
+      },
+      "description": {
+        "sk": "Zoznam zmlúv za obdobie od {date_from} do {date_to}.",
+        "en": "List of contracts from {date_from} to {date_to}."
+      },
+      "keywords": {
+        "sk": [
+          "publikačné minimum",
+          "zmluvy"
+        ],
+        "en": [
+          "publication minimum",
+          "contracts"
+        ]
+      }
+    }
+  },
+  "formats": {
+    ".csv": {
+      "format": "http://publications.europa.eu/resource/authority/file-type/CSV",
+      "media_type": "http://www.iana.org/assignments/media-types/text/csv",
+      "title": {
+        "sk": "CSV distribúcia",
+        "en": "CSV distribution"
+      }
+    },
+    ".xlsx": {
+      "format": "http://publications.europa.eu/resource/authority/file-type/XLSX",
+      "media_type": "http://www.iana.org/assignments/media-types/application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "title": {
+        "sk": "XLSX distribúcia",
+        "en": "XLSX distribution"
+      }
+    },
+    ".xml": {
+      "format": "http://publications.europa.eu/resource/authority/file-type/RDF_XML",
+      "media_type": "http://www.iana.org/assignments/media-types/application/rdf+xml",
+      "title": {
+        "sk": "RDF/XML distribúcia",
+        "en": "RDF/XML distribution"
+      }
+    },
+    ".jsonld": {
+      "format": "http://publications.europa.eu/resource/authority/file-type/JSON_LD",
+      "media_type": "http://www.iana.org/assignments/media-types/application/ld+json",
+      "title": {
+        "sk": "JSON-LD distribúcia",
+        "en": "JSON-LD distribution"
+      }
+    }
+  }
+}
